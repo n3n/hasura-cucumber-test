@@ -1,0 +1,25 @@
+table:
+  name: users
+  schema: public
+array_relationships:
+- name: organizations
+  using:
+    foreign_key_constraint_on:
+      column: user_id
+      table:
+        name: organization_users
+        schema: public
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - id
+    - email
+    filter:
+      _or:
+      - id:
+          _eq: X-Hasura-User-Id
+      - organizations:
+          organization_id:
+            _eq: X-Hasura-Organization-Id
+  role: user

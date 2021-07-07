@@ -1,0 +1,1 @@
+CREATE TABLE "public"."organization_users" ("organization_id" uuid NOT NULL, "user_id" uuid NOT NULL, PRIMARY KEY ("organization_id","user_id") , FOREIGN KEY ("organization_id") REFERENCES "public"."organizations"("id") ON UPDATE cascade ON DELETE cascade, FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON UPDATE cascade ON DELETE cascade);
